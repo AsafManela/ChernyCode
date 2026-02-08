@@ -4,7 +4,7 @@
 # Installs personal skills and subagents for Claude Code and Cursor
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/AsafManela/ChernyCode/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/meleantonio/ChernyCode/main/install.sh | bash
 #
 # Or clone the repo and run:
 #   ./install.sh
@@ -36,7 +36,7 @@ else
     TEMP_DIR=$(mktemp -d)
     trap "rm -rf $TEMP_DIR" EXIT
     info "Cloning ChernyCode repository..."
-    git clone --depth 1 https://github.com/AsafManela/ChernyCode.git "$TEMP_DIR" 2>/dev/null || \
+    git clone --depth 1 https://github.com/meleantonio/ChernyCode.git "$TEMP_DIR" 2>/dev/null || \
         error "Failed to clone repository. Check your internet connection."
     SOURCE_DIR="$TEMP_DIR"
     success "Repository cloned"
@@ -160,5 +160,5 @@ echo "  1. Copy CLAUDE.md and AGENTS.md to your project root"
 echo "  2. Copy .cursor/skills/ to your project's .cursor/ directory"
 echo "  3. Customize the files for your project"
 echo ""
-echo "For more info, visit: https://github.com/AsafManela/ChernyCode"
+echo "For more info, visit: https://github.com/meleantonio/ChernyCode"
 echo ""

@@ -23,7 +23,7 @@ Boris Cherny is the creator of Claude Code. This repo synthesizes his recommenda
 Install all personal skills and subagents with a single command:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/AsafManela/ChernyCode/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/meleantonio/ChernyCode/main/install.sh | bash
 ```
 
 This installs:
