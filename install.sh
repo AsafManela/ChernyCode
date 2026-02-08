@@ -25,16 +25,16 @@ warn() { echo -e "${YELLOW}[WARN]${NC} $1"; }
 error() { echo -e "${RED}[ERROR]${NC} $1"; exit 1; }
 
 # Determine source directory
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-}")" 2>/dev/null && pwd)"
 
 # Check if running from repo or via curl
-if [[ -f "$SCRIPT_DIR/CLAUDE.md" ]]; then
+if [[ -n "${BASH_SOURCE[0]:-}" && -d "$SCRIPT_DIR/claude_personal_skills" ]]; then
     SOURCE_DIR="$SCRIPT_DIR"
     info "Running from local repository: $SOURCE_DIR"
 else
     # Running via curl - clone to temp directory
     TEMP_DIR=$(mktemp -d)
-    trap "rm -rf $TEMP_DIR" EXIT
+    trap 'rm -rf "$TEMP_DIR"' EXIT
     info "Cloning ChernyCode repository..."
     git clone --depth 1 https://github.com/meleantonio/ChernyCode.git "$TEMP_DIR" 2>/dev/null || \
         error "Failed to clone repository. Check your internet connection."
