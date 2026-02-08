@@ -121,12 +121,19 @@ fi
 # Step 6: Optional - Install personal CLAUDE.md
 echo ""
 if [[ ! -f ~/.claude/CLAUDE.md ]]; then
-    read -p "Install personal CLAUDE.md to ~/.claude/CLAUDE.md? (y/N) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        cp "$SOURCE_DIR/CLAUDE.md" ~/.claude/CLAUDE.md
-        success "Personal CLAUDE.md installed"
-        info "Edit ~/.claude/CLAUDE.md to customize your preferences"
+    if [[ -t 0 ]]; then
+        # Interactive mode - prompt user
+        read -p "Install personal CLAUDE.md to ~/.claude/CLAUDE.md? (y/N) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            cp "$SOURCE_DIR/CLAUDE.md" ~/.claude/CLAUDE.md
+            success "Personal CLAUDE.md installed"
+            info "Edit ~/.claude/CLAUDE.md to customize your preferences"
+        fi
+    else
+        # Non-interactive (curl | bash) - skip prompt, show instructions
+        info "To install personal CLAUDE.md, run:"
+        echo "  curl -fsSL https://raw.githubusercontent.com/AsafManela/ChernyCode/main/CLAUDE.md -o ~/.claude/CLAUDE.md"
     fi
 else
     warn "~/.claude/CLAUDE.md already exists, skipping"
