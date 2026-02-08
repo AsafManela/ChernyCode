@@ -31,6 +31,7 @@ This installs:
 - Claude Code subagents to `~/.claude/agents/`
 - Cursor personal skills to `~/.cursor/skills-cursor/`
 - Cursor subagents to `~/.cursor/agents/`
+- Personal CLAUDE.md to `~/.claude/CLAUDE.md`
 
 ### Manual Installation
 
